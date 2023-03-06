@@ -1,6 +1,10 @@
 package io.zipcoder;
 
 
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author tariq
  */
@@ -15,7 +19,27 @@ public class StringsAndThings {
      *           countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input){
-        return null;
+        //split the string into separate words
+        //check what the last letter of each word is (not case sensitive)
+        //compare unknown letter to known letter
+        //count addition based on matching letter
+        String stringY  = "y";
+        String stringZ  = "z";
+        int actual = 0;
+        String separatedWordsArray[] = input.split(" ");
+        int l = separatedWordsArray.length;
+        for (int i = 0; i < l; i++) {
+            String separatedWord = separatedWordsArray[i].toString();
+            int pos = separatedWord.length()-1;
+            String lastLetter = String.valueOf(separatedWord.charAt(pos));
+            if (stringY.equalsIgnoreCase(lastLetter)){
+                actual++;
+            }else if (stringZ.equalsIgnoreCase(lastLetter)) {
+                actual++;
+            }
+        }
+
+        return actual;
     }
 
     /**
@@ -28,7 +52,8 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+            String newWord = base.replaceAll(remove, "");
+            return newWord;
     }
 
     /**
@@ -40,7 +65,20 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+        int isCount = 0;
+        int notCount = 0;
+        if(input.contains("is")){
+           isCount ++;
+        }
+        if(input.contains("not")){
+            notCount++;
+        }
+        if (isCount==notCount){
+            return true;
+        }else {
+            return false;
+        }
+
     }
 
     /**
@@ -51,7 +89,12 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
+        if(input.contains("gg")) {
+            return true;
+        }else {
+            return false;
+        }
+
     }
 
 
@@ -62,7 +105,14 @@ public class StringsAndThings {
      *            countTriple("xxxabyyyycd") // Should return 3
      *            countTriple("a") // Should return 0
      */
-    public Integer countTriple(String input){
-        return null;
+    public Integer countTriple(String input) {
+        int l = input.length()-2;
+        int count = 0;
+        for (int i = 0; i < l; i++) {
+                if (input.charAt(i) == input.charAt(i + 1) && input.charAt(i + 1) == input.charAt(i + 2)) {
+                    count++;
+                }
+            }
+        return count;
     }
 }
